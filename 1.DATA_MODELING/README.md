@@ -44,7 +44,7 @@ Database schema and tables are optimized for queries on song play analysis. Ther
 
 - Dimension tables: ``users``, ``songs``, ``artists``, ``time``
 
-[![ER diagram](/sparkify_erd.png )](sparkify_erd.png)
+[![ER diagram](./sparkify_erd.png )](sparkify_erd.png)
 
 
 An ETL pipeline is used to extract, transform and load data from JSON user activity logs and song metadata to the database using Python and SQL.
