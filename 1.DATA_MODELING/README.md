@@ -10,11 +10,15 @@ Run the following commands in the console to
 
 1. (Drop &) Create the database from scratch:
 
-`python create_tables.py`
+```bash
+python create_tables.py
+```
 
 2. Insert (or update) data to (in) the database:
 
-`python etl.py`
+```
+python etl.py
+```
 
 ### - Project files:
 
@@ -28,7 +32,7 @@ Run the following commands in the console to
 
 - ``test.ipynb`` : jupyter notebook used to interactively test ``etl.py``. 
 
-- ``etl.ipynb`` : jupyter notebook used when creating etl.py (not required anymore)
+- ``etl.ipynb`` : jupyter notebook used when creating etl.py (not required anymore).
 
 - ``README.md`` : markdown file with project overview.
 
@@ -47,7 +51,8 @@ An ETL pipeline is used to extract, transform and load data from JSON user activ
 
 a) which song men listen to ?
 
-``%sql \
+```sql
+%sql \
 SELECT DISTINCT(s.title) \
 FROM songs s \
 JOIN songplays sp \
@@ -55,19 +60,20 @@ ON sp.song_id = s.song_id \
 JOIN users u \
 ON u.user_id = sp.user_id \
 WHERE u.gender = 'M';
-``
+```
 
 
 b) What are the most-streamed songs?
 
-``%sql \
+```sql
+%sql \
 SELECT s.title, COUNT(s.title) \
 FROM songs s \
 JOIN songplays sp \
 ON sp.song_id = s.song_id \
 GROUP BY 1 \
 ORDER BY 1 DESC;
-``
+```
 
 | title          | count |
 |----------------|-------|
