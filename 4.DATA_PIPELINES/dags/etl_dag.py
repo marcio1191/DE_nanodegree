@@ -4,7 +4,6 @@ from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators import (StageToRedshiftOperator, LoadFactOperator, LoadDimensionOperator, DataQualityOperator)
 
-
 from helpers import SqlQueries
 
 AWS_KEY = os.environ.get('AWS_KEY')
@@ -23,7 +22,7 @@ default_args = {
 dag = DAG('udac_example_dag',
           default_args=default_args,
           description='Load and transform data in Redshift with Airflow',
-          schedule_interval='0 * * * *' # None
+          schedule_interval='0 * * * *' # hourly # None
         )
 
 start_operator = DummyOperator(task_id='Begin_execution',  dag=dag)
@@ -69,6 +68,7 @@ load_user_dimension_table = LoadDimensionOperator(
     conn_id = 'redshift',
     sql = SqlQueries.user_table_insert,
     target_table = 'users',
+    append = False
 )
 
 load_song_dimension_table = LoadDimensionOperator(
@@ -77,6 +77,8 @@ load_song_dimension_table = LoadDimensionOperator(
     conn_id = 'redshift',
     sql = SqlQueries.song_table_insert,
     target_table = 'songs',
+    append = False
+
 )
 
 load_artist_dimension_table = LoadDimensionOperator(
@@ -85,6 +87,8 @@ load_artist_dimension_table = LoadDimensionOperator(
     conn_id = 'redshift',
     sql = SqlQueries.artist_table_insert,
     target_table = 'artists',
+    append = False
+
 )
 
 load_time_dimension_table = LoadDimensionOperator(
@@ -93,6 +97,7 @@ load_time_dimension_table = LoadDimensionOperator(
     conn_id = 'redshift',
     sql = SqlQueries.time_table_insert,
     target_table = 'time',
+    append = False
 )
 
 

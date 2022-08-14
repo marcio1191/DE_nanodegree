@@ -8,19 +8,17 @@ class LoadDimensionOperator(BaseOperator):
 
     @apply_defaults
     def __init__(self,
-                 conn_id = 'redshift',
-                 sql = '',
-                 target_table = '',
-                 append = False,
-                 *args, **kwargs):
+                conn_id = 'redshift',
+                sql = '',
+                target_table = '',
+                append = False,
+                *args, **kwargs):
 
         super(LoadDimensionOperator, self).__init__(*args, **kwargs)
         self.conn_id = conn_id
         self.sql = sql
         self.target_table = target_table
-
         self.append = append
-
         self.redshift_hook = PostgresHook(self.conn_id)
 
 
@@ -34,7 +32,10 @@ class LoadDimensionOperator(BaseOperator):
         )
 
         SQL_DELETE = """DELETE FROM {target_table};""".format(target_table = self.target_table)
+        # SQL_DELETE = """TRUNCATE {target_table};""".format(target_table = self.target_table)
 
         if self.append:
+            self.log.info(f'Deleting content from table: {self.target_table} ...')
             self.redshift_hook.run(SQL_DELETE)
+        self.log.info(f'Inserting content in table: {self.target_table} ...')
         self.redshift_hook.run(SQL_INSERT)

@@ -7,16 +7,16 @@ class StageToRedshiftOperator(BaseOperator):
 
     @apply_defaults
     def __init__(self,
-                 redshift_conn_id='redshift',
-                 s3_bucket = 'udacity-dend',
-                 s3_bucket_key = 'log_date',
-                 target_table='staging_events',
-                 copy_json_format = 'auto', #'s3://udacity-dend/log_json_path.json'
-                 aws_region = 'us-west-2',
-                 access_key_id = '',
-                 secret_access_key = '',
-                 ds = None,
-                 *args, **kwargs):
+                redshift_conn_id='redshift',
+                s3_bucket = 'udacity-dend',
+                s3_bucket_key = 'log_date',
+                target_table='staging_events',
+                copy_json_format = 'auto', #'s3://udacity-dend/log_json_path.json'
+                aws_region = 'us-west-2',
+                access_key_id = '',
+                secret_access_key = '',
+                ds = None,
+                *args, **kwargs):
 
         super(StageToRedshiftOperator, self).__init__(*args, **kwargs)
         self.conn_id = redshift_conn_id
