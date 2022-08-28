@@ -22,7 +22,7 @@ The project workspace includes:
 [![ER diagram](./data_model.png )](data_model.png)
 
 
-## Step 4: Run Pipelines to Model the Data
+## Run Pipelines to Model the Data
 
 ```bash
 python -m etl.stagging
