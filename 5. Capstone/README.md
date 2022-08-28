@@ -19,6 +19,9 @@ The project workspace includes:
 - Data is moved from raw to stagging directory after cleaning and validation
 - Tables are created and stored in tables directory
 
+[![ER diagram](./data_model.png )](data_model.png)
+
+
 ## Step 4: Run Pipelines to Model the Data
 
 ```bash
